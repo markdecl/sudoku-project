@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    left: 300px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(9, 50px);
+    grid-template-rows: repeat(9, 50px);
+    
+    padding: 10px;
+    width: 459px;
+    height: 459px;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-left: 300px;
+    box-shadow: 10px 10px;
+    justify-content: center;
+    align-content: center;
+    grid-gap: 0rem;
+    list-style: none;
+    padding: 0;
+    font-size: 10px;
+}
+
+.cell{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    /* span {
+        margin-top: 0.4rem;
+    }   */
+}
+
+.cell:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid black;
+    box-shadow: 5px 5px 5px 5px;
+    cursor: pointer;
+}
+
+.cell.selected {
+    background-color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid black;
+    box-shadow: 5px;
+    cursor: pointer;
+  }
+
+input {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    font-weight: bold;
+    box-shadow: 5px;
+    background-color: transparent;
+}
+
+.cell:nth-child(n):nth-child(-n+9) {
+    border-top-width: 4px;
+}
+.cell:nth-child(n+73):nth-child(-n+81) {
+    border-bottom-width: 4px;
+}
+.cell:nth-child(3n) {
+    border-right-width: 4px;
+}
+.cell:nth-child(9n+1) {
+    border-left-width: 4px;
+}
+.cell:nth-child(n+19):nth-child(-n+27) {
+    border-bottom-width: 4px;
+}
+.cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom-width: 4px;
+}
+
+.buttons {
+    right: 200px;
+}
+
+#auto-solve {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 5px 5px black;
+}
+
+#auto-solve:hover {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 10px 10px black;
+    cursor: pointer;
+}

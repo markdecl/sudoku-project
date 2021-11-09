@@ -1,8 +1,8 @@
 const grid = document.querySelector('.grid');
-const newGame = document.querySelector('#new-game');
-const restart = document.querySelector('#restart');
-const hint = document.querySelector('#hint');
-const autoSolve = document.querySelector('#auto-solve');
+const newGameBtn = document.querySelector('#new-game');
+const restartBtn = document.querySelector('#restart');
+const hintBtn = document.querySelector('#hint');
+const autoSolveBtn = document.querySelector('#auto-solve');
 // const selectedCell = undefined
 
 // const boardState = [];
@@ -21,22 +21,6 @@ const autoSolve = document.querySelector('#auto-solve');
 //     });
 //     const selectedCell = event.currentTarget;
 //     selectedCell.classList.add('selected');
-// }
-
-// const validateInput = (gridCell) => {
-//     const boardState = [];
-//     const rows = grid.querySelectorAll('tr');
-//     for (i = 0; i < 9; i++) {
-//         const row = rows[i];
-//         const cells = row.querySelectorAll('td');
-//         boardStateRow = [];
-//         for (j = 0; j < 9; j++) {
-//             const cell = cells[j]
-//             boardStateRow.push(cell.textContent);
-//         }
-//         boardState.push(boardStateRow);
-//     }
-//     console.log(gridCell)
 // }
 
 const acceptInput = (event) => {
@@ -96,12 +80,10 @@ const createNewGrid = () => {
     // ];
 }
 
-// const restart = () => {
-//     // Delete the contents of all the input boxes
-// }
 
 const resetGrid = () => {
     const grid = document.querySelector('.grid');
+    grid.innerHTML = "";
     const newGrid = createNewGrid();
     // iterate through the rows of the generated grid
     for (let i = 0; i < 9; i++) {
@@ -123,11 +105,85 @@ const resetGrid = () => {
                 rowCell.textContent = newGrid[i][j];
             }
         }
-    };
+    }
+}
+
+const validateInput = (gridCell) => {
+    const input = gridCell.textContent;
+    const rowIdx = gridCell.getAttribute('row_index');
+    const columnIdx = gridCell.getAttribute('column_index');
+
+    const rows = grid.querySelectorAll('tr');
+    const row = rows[rowIdx];
+    const cells = row.querySelectorAll('td');
+    // const gridCell = cells[j];
+
+    // find all other numbers in cell row
+    const cellRow = [];
+    for (k = 0; k < 9; k++) {
+        cellRow.push(cells[k].textContent);
+    }
+    cellRow.splice(columnIdx, 1);
+    // console.log('cellRow:');
+    // console.log(cellRow);
+
+    // find all other numbers in cell column
+    const cellCol = [];
+    for (l = 0; l < 9; l++) {
+        tds = rows[l].querySelectorAll('td');
+        cellCol.push(tds[columnIdx].textContent);
+    }
+    cellCol.splice(rowIdx, 1);
+    // console.log('cellCol:');
+    // console.log(cellCol);
+
+    // find all other numbers in cell square
+    // FIX THIS -------- THINK IT'S FIXED
+    const cellSquare = [];
+    const squareRowIdx = (Math.floor((parseInt(rowIdx))/3.0) * 3);
+    // console.log('square row idx');
+    // console.log(squareRowIdx);
+    // console.log('column idx');
+    // console.log(columnIdx);
+    const squareColumnIdx = (Math.floor(parseInt(columnIdx)/3.0) * 3);
+    // console.log('square column idx');
+    // console.log(squareColumnIdx);
+    for (m = squareRowIdx; m < squareRowIdx + 3; m++) {
+        // console.log('m');
+        // console.log(m);
+        const td_rows = rows[m].querySelectorAll('td');
+        for (n = squareColumnIdx; n < squareColumnIdx + 3; n++) {
+            // console.log('n');
+            // console.log(n);
+            // if (rowIdx != m && columnIdx != n) {
+            // console.log(td_rows[n].textContent);
+            cellSquare.push(td_rows[n].textContent);
+            // }
+        }
+    }
+    squareIdx = ((rowIdx % 3) * 3) + (columnIdx % 3);
+    // console.log(squareIdx);
+    cellSquare.splice(squareIdx, 1);
+    // console.log('cellSquare:');
+    // console.log(cellSquare);
+
+
+    // if the cell's number isn't duplicated in its row, column or square, color it blue
+    // console.log(input);
+    // console.log(cellRow);
+    // console.log(cellCol);
+    // console.log(cellSquare);
+    // if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false) {
+    if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false && cellSquare.includes(`${input}`) === false) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 const checkIfSolved = () => {
-    let boardSolved = true;
+    // let boardSolved = true;
+    grid.setAttribute('solved', 'true');
 
     // iterate through every cell in the grid and check whether input value is valid
     // validate cell input by colour
@@ -139,85 +195,79 @@ const checkIfSolved = () => {
         // iterate through each cell in each board row
         for (j = 0; j < 9; j++) {
             const gridCell = cells[j];
-
             if (gridCell.getAttribute('blank') === 'true') {
-                const input = gridCell.textContent;
-                const rowIdx = gridCell.getAttribute('row_index');
-                const columnIdx = gridCell.getAttribute('column_index');
-                
-                // find all other numbers in cell row
-                const cellRow = [];
-                for (k = 0; k < 9; k++) {
-                    cellRow.push(cells[k].textContent);
-                }
-                cellRow.splice(columnIdx, 1);
-                console.log('cellRow:');
-                console.log(cellRow);
-
-                // find all other numbers in cell column
-                const cellCol = [];
-                for (l = 0; l < 9; l++) {
-                    tds = rows[l].querySelectorAll('td');
-                    cellCol.push(tds[columnIdx].textContent);
-                }
-                cellCol.splice(rowIdx, 1);
-                console.log('cellCol:');
-                console.log(cellCol);
-
-                // find all other numbers in cell square
-                // FIX THIS --------
-                const cellSquare = [];
-                const squareRowIdx = (Math.floor((parseInt(rowIdx))/3.0) * 3);
-                console.log('column idx');
-                console.log(columnIdx);
-                const squareColumnIdx = (Math.floor(parseInt(columnIdx)/3.0) * 3);
-                console.log('square column idx');
-                console.log(squareColumnIdx);
-                for (m = squareRowIdx + 1; m < squareRowIdx + 3; m++) {
-                    console.log('m');
-                    console.log(m);
-                    const td_rows = rows[m].querySelectorAll('td');
-                    for (n = squareColumnIdx + 1; n < squareColumnIdx + 3; n++) {
-                        console.log('n');
-                        console.log(n);
-                        cellSquare.push(td_rows[n].textContent);
-                    }
-                }
-                console.log('cellSquare:');
-                console.log(cellSquare);
-
-
-                // if the cell's number isn't duplicated in its row, column or square, color it blue
-                console.log(input);
-                console.log(cellRow);
-                console.log(cellCol);
-                if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false && cellSquare.includes(`${input}` === false)) {
+                if (validateInput(gridCell)) {
                     gridCell.style.color = "blue";
                 } else {
                     gridCell.style.color = "red";
-                    let boardSolved = false;
-                    console.log(boardSolved);
+                    grid.setAttribute('solved', 'false');
+                    // let boardSolved = false;
+                    // console.log(boardSolved);
                 }
             }
         }
     }
-    console.log(boardSolved);
-    if (boardSolved === true) {
+    // console.log(boardSolved);
+    // if (boardSolved === true) {
+    if (grid.getAttribute('solved') === 'true') {
         alert('You won!');
         // resetGrid();
     }
 }
 
+const restart = () => {
+    // Delete the contents of all the input boxes
+    const rows = grid.querySelectorAll('tr');
+    // iterate through all board rows
+    for (i = 0; i < 9; i++) {
+        const row = rows[i];
+        const cells = row.querySelectorAll('td');
+        // iterate through each cell in each board row
+        for (j = 0; j < 9; j++) {
+            const gridCell = cells[j];
+            if (gridCell.getAttribute('blank') === 'true') {
+                gridCell.textContent = "";
+                gridCell.insertAdjacentHTML('beforeend', '<input>');
+                gridCell.querySelector('input').addEventListener('keyup', acceptInput);
+            }
+        }
+    }
+}
+
 // function giveHint()
 
-// function autoSolve()
+const autoSolve = () => {
+    const rows = grid.querySelectorAll('tr');
+    // iterate through all board rows
+    for (i = 0; i < 9; i++) {
+        const row = rows[i];
+        const cells = row.querySelectorAll('td');
+        // iterate through each cell in each board row
+        for (j = 0; j < 9; j++) {
+            const gridCell = cells[j];
+            if (gridCell.textContent === "") {
+                for (attempt = 1; attempt <= 9; attempt++) {
+                    gridCell.textContent = attempt;
+                    if (validateInput(gridCell)) {
+                        gridCell.textContent = attempt;
+                        autoSolve();
+                        // if this solution is invalid, backtrack
+                        gridCell.textContent = "";
+                    }
+                return;
+                }
+            }
+        }
+    }
+    checkIfSolved();
+}
 
 
 resetGrid();
 checkIfSolved();
 
-// newGame.addEventListener('click', resetGrid);
-// restart.addEventListener('click', restart);
-// hint.addEventListener('click', hint);
-// autoSolve.addEventListener('click', autoSolve);
+newGameBtn.addEventListener('click', resetGrid);
+restartBtn.addEventListener('click', restart);
+// hintBtn.addEventListener('click', hint);
+autoSolveBtn.addEventListener('click', autoSolve);
 

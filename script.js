@@ -221,5 +221,3 @@ checkIfSolved();
 // hint.addEventListener('click', hint);
 // autoSolve.addEventListener('click', autoSolve);
 
-hey
-

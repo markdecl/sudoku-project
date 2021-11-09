@@ -116,6 +116,8 @@ const resetGrid = () => {
 const validateInput = (gridCell) => {
     console.log('VALIDATE_INPUT:');
     const input = gridCell.textContent;
+    console.log('GridCell input:')
+    console.log(input);
     const rowIdx = gridCell.getAttribute('row_index');
     const columnIdx = gridCell.getAttribute('column_index');
 
@@ -176,7 +178,7 @@ const validateInput = (gridCell) => {
 
     // if the cell's number isn't duplicated in its row, column or square, color it blue
     // console.log('input:');
-    // console.log(input);
+    console.log(input);
     console.log(cellRow);
     console.log(cellCol);
     console.log(cellSquare);
@@ -273,13 +275,24 @@ const autoSolve = () => {
                     const row = rows[i];
                     const cells = row.querySelectorAll('td');
                     const gridCell = cells[j];
-
                     gridCell.style.background = 'yellow';
-                    gridCell.textContent = `${attempt}`;
+
+                    console.log(gridCell);
+
+                    // gridCell.textContent = `${attempt}`;
+                    gridCell.textContent = 'wys';
+
                     console.log(gridCell);
                     // console.log(validateInput(gridCell));
+
                     if (validateInput(gridCell) == true) {
                         console.log('NEXT RECURSION LEVEL:');
+
+                        const rows = grid.querySelectorAll('tr');
+                        const row = rows[i];
+                        const cells = row.querySelectorAll('td');
+                        const gridCell = cells[j];
+
                         gridCell.textContent = `${attempt}`;
                         console.log(gridCell);
                         // console.log(gridCell)

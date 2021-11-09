@@ -105,9 +105,11 @@ input {
     /* position: relative; */
 }
 
+
 input:focus {
     display: initial;
 }
+
 
 tr:nth-child(4) td {
     border-top-width: 4px;
@@ -134,21 +136,6 @@ tr:nth-child(9) td {
     border-bottom-width: 4px;
 }
 
-/* td:nth-child(n+73):nth-child(-n+81) {
-    border-bottom-width: 4px;
-}
-td:nth-child(3n) {
-    border-right-width: 4px;
-}
-dt:nth-child(9n+1) {
-    border-left-width: 4px;
-}
-dt:nth-child(n+19):nth-child(-n+27) {
-    border-bottom-width: 4px;
-}
-td:nth-child(n+46):nth-child(-n+54) {
-    border-bottom-width: 4px;
-} */
 
 .buttons-container {
     width: 100%;

@@ -101,12 +101,39 @@ input {
     font-size: 25px;
     box-shadow: 5px;
     background-color: transparent;
+    display: none;
     /* position: relative; */
 }
 
-/* tr:nth-child(6):nth-child(8){
+input:focus {
+    display: initial;
+}
+
+tr:nth-child(4) td {
     border-top-width: 4px;
-} */
+}
+tr:nth-child(7) td {
+    border-top-width: 4px;
+}
+td:nth-child(3) {
+    border-right-width: 4px;
+}
+td:nth-child(6) {
+    border-right-width: 4px;
+}
+tr:nth-child(1) td {
+    border-top-width: 4px;
+}
+td:nth-child(1) {
+    border-left-width: 4px;
+}
+td:nth-child(9) {
+    border-right-width: 4px;
+}
+tr:nth-child(9) td {
+    border-bottom-width: 4px;
+}
+
 /* td:nth-child(n+73):nth-child(-n+81) {
     border-bottom-width: 4px;
 }

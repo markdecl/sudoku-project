@@ -30,6 +30,7 @@ const acceptInput = (event) => {
         gridCell.textContent = cellInput;
         gridCell.insertAdjacentHTML('beforeend', '<input>'); // ADDED FOR TESTING
         gridCell.querySelector('input').addEventListener('keyup', acceptInput); // ADDED FOR TESTING
+        // gridCell.querySelector('input').style.display = 'none';
         checkIfSolved();
     } else {
         gridCell.textContent == '';
@@ -99,7 +100,11 @@ const resetGrid = () => {
                 // rowCell.addEventListener('click', createInputBox);
                 rowCell.insertAdjacentHTML('beforeend', '<input>'); // ADDED FOR TESTING
                 rowCell.querySelector('input').addEventListener('keyup', acceptInput);
-                
+                rowCell.addEventListener('click', (event) => {
+                    console.log('clicked');
+                    rowCell.querySelector('input').style.display = 'initial';
+                })
+                // rowCell.addEventListener('arrow keys', move);
             } else {
                 rowCell.setAttribute('blank', 'false');
                 rowCell.textContent = newGrid[i][j];
@@ -109,6 +114,7 @@ const resetGrid = () => {
 }
 
 const validateInput = (gridCell) => {
+    console.log('VALIDATE_INPUT:');
     const input = gridCell.textContent;
     const rowIdx = gridCell.getAttribute('row_index');
     const columnIdx = gridCell.getAttribute('column_index');
@@ -169,14 +175,17 @@ const validateInput = (gridCell) => {
 
 
     // if the cell's number isn't duplicated in its row, column or square, color it blue
+    // console.log('input:');
     // console.log(input);
-    // console.log(cellRow);
-    // console.log(cellCol);
-    // console.log(cellSquare);
+    console.log(cellRow);
+    console.log(cellCol);
+    console.log(cellSquare);
     // if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false) {
     if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false && cellSquare.includes(`${input}`) === false) {
+        console.log('Returning true...');
         return true;
     } else {
+        console.log('Returning false...');
         return false;
     }
 }
@@ -236,7 +245,13 @@ const restart = () => {
 
 // function giveHint()
 
+// const sleepSync = (ms) => {
+//     const end = new Date().getTime() + ms;
+//     while (new Date().getTime() < end) { /* do nothing */ }
+// }
+
 const autoSolve = () => {
+    console.log('RUNNING AUTO_SOLVE...');
     const rows = grid.querySelectorAll('tr');
     // iterate through all board rows
     for (i = 0; i < 9; i++) {
@@ -247,19 +262,43 @@ const autoSolve = () => {
             const gridCell = cells[j];
             if (gridCell.textContent === "") {
                 for (attempt = 1; attempt <= 9; attempt++) {
-                    gridCell.textContent = attempt;
-                    if (validateInput(gridCell)) {
-                        gridCell.textContent = attempt;
-                        autoSolve();
-                        // if this solution is invalid, backtrack
-                        gridCell.textContent = "";
+                    // sleepSync(1000);
+                    console.log('Row: ' + (i + 1));
+                    console.log('Column: ' + (j + 1));
+                    console.log('Attempt: ' + attempt);
+                    
+                    // gridCell.style.boxShadow = "0 0 10px 10px rgba(0, 0, 0, 0.2)";
+
+                    const rows = grid.querySelectorAll('tr');
+                    const row = rows[i];
+                    const cells = row.querySelectorAll('td');
+                    const gridCell = cells[j];
+
+                    gridCell.style.background = 'yellow';
+                    gridCell.textContent = `${attempt}`;
+                    console.log(gridCell);
+                    // console.log(validateInput(gridCell));
+                    if (validateInput(gridCell) == true) {
+                        console.log('NEXT RECURSION LEVEL:');
+                        gridCell.textContent = `${attempt}`;
+                        console.log(gridCell);
+                        // console.log(gridCell)
+                        // checkIfSolved();
+                        console.log(grid);
+                        if (autoSolve()) {
+                            return true;
+                        } else {
+                            // if this solution is invalid, backtrack
+                            gridCell.textContent = "";
+                        }
                     }
-                return;
                 }
+                return false;
             }
         }
     }
     checkIfSolved();
+    return true;
 }
 
 

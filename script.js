@@ -252,6 +252,7 @@ const restart = () => {
 //     while (new Date().getTime() < end) { /* do nothing */ }
 // }
 
+// backtracking algorithm:
 const autoSolve = () => {
     console.log('RUNNING AUTO_SOLVE...');
     const rows = grid.querySelectorAll('tr');
@@ -313,6 +314,9 @@ const autoSolve = () => {
     checkIfSolved();
     return true;
 }
+
+// non-backtracking algorithm:
+
 
 
 resetGrid();

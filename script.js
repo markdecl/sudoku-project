@@ -222,7 +222,7 @@ const checkIfSolved = () => {
     // if (boardSolved === true) {
     if (grid.getAttribute('solved') === 'true') {
         alert('You won!');
-        // resetGrid();
+        resetGrid();
     }
 }
 

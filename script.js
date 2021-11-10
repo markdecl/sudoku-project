@@ -253,8 +253,10 @@ const restart = () => {
 // }
 
 // backtracking algorithm:
-const autoSolve = () => {
+
+const solve = (grid) => {
     console.log('RUNNING AUTO_SOLVE...');
+    console.log(grid);
     const rows = grid.querySelectorAll('tr');
     // iterate through all board rows
     for (i = 0; i < 9; i++) {
@@ -280,8 +282,8 @@ const autoSolve = () => {
 
                     console.log(gridCell);
 
-                    // gridCell.textContent = `${attempt}`;
-                    gridCell.textContent = 'wys';
+                    gridCell.textContent = `${attempt}`;
+                    // gridCell.textContent = 'wys';
 
                     console.log(gridCell);
                     // console.log(validateInput(gridCell));
@@ -299,7 +301,7 @@ const autoSolve = () => {
                         // console.log(gridCell)
                         // checkIfSolved();
                         console.log(grid);
-                        if (autoSolve()) {
+                        if (solve(grid)) {
                             return true;
                         } else {
                             // if this solution is invalid, backtrack
@@ -315,8 +317,146 @@ const autoSolve = () => {
     return true;
 }
 
-// non-backtracking algorithm:
+const autoSolve = () => {
+    solve(grid);
+}
 
+// autoSolve with abstracted grid object:
+// represent grid in 2-D array
+const representGrid = () => {
+    const twoDArray =[];
+    const rows = grid.querySelectorAll('tr');
+    // iterate through all board rows
+    for (i = 0; i < 9; i++) {
+        const row = rows[i];
+        const cells = row.querySelectorAll('td');
+        // iterate through each cell in each board row
+        cells_array = [];
+        for (j = 0; j < 9; j++) {
+            const gridCell = cells[j];
+            cells_array.push(gridCell.textContent);
+        }
+        twoDArray.push(cells_array);
+    }
+    return twoDArray;
+}
+
+const rGrid = representGrid();
+
+const autoSolveRepresentedGrid = () => {
+    console.log('RUNNING AUTO_SOLVE...');
+    console.log(representedGrid);
+    // iterate through all board rows
+    for (i = 0; i < 9; i++) {
+        const row = rGrid[i];
+        // iterate through each cell in each board row
+        for (j = 0; j < 9; j++) {
+            const gridCell = row[j];
+            if (gridCell === "") {
+                for (attempt = 1; attempt <= 9; attempt++) {
+                    // sleepSync(1000);
+                    console.log('Row: ' + (i + 1));
+                    console.log('Column: ' + (j + 1));
+                    console.log('Attempt: ' + attempt);
+
+                    gridCell = `${attempt}`;
+                    // gridCell.textContent = 'wys';
+
+                    console.log(gridCell);
+                    // console.log(validateInput(gridCell));
+
+                    const rowIdx = gridCell.getAttribute('row_index');
+                    const columnIdx = gridCell.getAttribute('column_index');
+
+                    const rows = grid.querySelectorAll('tr');
+                    const row = rows[rowIdx];
+                    // const gridCell = cells[j];
+
+                    // find all other numbers in cell row
+                    for (k = 0; k < 9; k++) {
+                        cellRow.push(cells[k].textContent);
+                    }
+                    cellRow.splice(j, 1);
+                    // console.log('cellRow:');
+                    // console.log(cellRow);
+
+                    // find all other numbers in cell column
+                    const cellCol = [];
+                    for (l = 0; l < 9; l++) {
+                        tds = rows[l].querySelectorAll('td');
+                        cellCol.push(tds[columnIdx].textContent);
+                    }
+                    cellCol.splice(rowIdx, 1);
+                    // console.log('cellCol:');
+                    // console.log(cellCol);
+
+                    // find all other numbers in cell square
+                    // FIX THIS -------- THINK IT'S FIXED
+                    const cellSquare = [];
+                    const squareRowIdx = (Math.floor((parseInt(rowIdx))/3.0) * 3);
+                    // console.log('square row idx');
+                    // console.log(squareRowIdx);
+                    // console.log('column idx');
+                    // console.log(columnIdx);
+                    const squareColumnIdx = (Math.floor(parseInt(columnIdx)/3.0) * 3);
+                    // console.log('square column idx');
+                    // console.log(squareColumnIdx);
+                    for (m = squareRowIdx; m < squareRowIdx + 3; m++) {
+                        // console.log('m');
+                        // console.log(m);
+                        const td_rows = rows[m].querySelectorAll('td');
+                        for (n = squareColumnIdx; n < squareColumnIdx + 3; n++) {
+                            // console.log('n');
+                            // console.log(n);
+                            // if (rowIdx != m && columnIdx != n) {
+                            // console.log(td_rows[n].textContent);
+                            cellSquare.push(td_rows[n].textContent);
+                            // }
+                        }
+                    }
+                    squareIdx = ((rowIdx % 3) * 3) + (columnIdx % 3);
+                    // console.log(squareIdx);
+                    cellSquare.splice(squareIdx, 1);
+                    // console.log('cellSquare:');
+                    // console.log(cellSquare);
+
+
+                    // if the cell's number isn't duplicated in its row, column or square, color it blue
+                    // console.log('input:');
+                    console.log(input);
+                    console.log(cellRow);
+                    console.log(cellCol);
+                    console.log(cellSquare);
+                    // if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false) {
+                    if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false && cellSquare.includes(`${input}`) === false) {
+                        console.log('Returning true...');
+                        console.log('NEXT RECURSION LEVEL:');
+
+                        const rows = grid.querySelectorAll('tr');
+                        const row = rows[i];
+                        const cells = row.querySelectorAll('td');
+                        const gridCell = cells[j];
+
+                        gridCell.textContent = `${attempt}`;
+                        console.log(gridCell);
+                        // console.log(gridCell)
+                        // checkIfSolved();
+                        console.log(grid);
+                        if (solve(grid)) {
+                            return true;
+                        } else {
+                            // if this solution is invalid, backtrack
+                            gridCell.textContent = "";
+                        }
+                    }
+                }
+                return false;
+            }
+        }
+    }
+    checkIfSolved();
+    return true;
+}
 
 
 resetGrid();

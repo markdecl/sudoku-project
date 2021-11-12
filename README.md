@@ -4,6 +4,11 @@ I was keen to practise my skills in HTML, CSS and JS. So alongside completing my
 
 ## Demo:
 
+### New game generator
+
+### Basic gameplay
+
+### _Hint_ and _AutoSolve_ features
 
 ## Tools and technologies used:
 * HTML5

@@ -1,6 +1,6 @@
 # sudoku-project
  
-I was keen to practise my skills in HTML, CSS, and JS through completing an independent project. So I built a Sudoku game that runs in-browser, complete with basic gameplay, a new game generator, and 'Hint' and 'AutoSolve' features.
+I was keen to practise my skills in HTML, CSS, and JS through completing an independent project. So I built a Sudoku game that runs in-browser, complete with basic gameplay, a new game generator, and 'Hint' and 'AutoSolve' features powered by a backtracking algorithm.
 
 ## Demo:
 

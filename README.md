@@ -4,7 +4,7 @@ I was keen to practise my skills in HTML, CSS, and JS. So alongside completing m
 
 ## Demo:
 
-### Basic gameplay
+### Basic gameplay on the interface
 
 ### New game generator
 

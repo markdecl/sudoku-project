@@ -24,12 +24,20 @@ const autoSolveBtn = document.querySelector('#auto-solve');
 // }
 
 const acceptInput = (event) => {
-    gridCell = event.currentTarget.parentElement;
-    cellInput = event.currentTarget.value;
+    const InputBoxInCell = event.currentTarget;
+    const gridCell = InputBoxInCell.parentElement;
+    const cellInput = InputBoxInCell.value;
+
     if (['1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(cellInput)) {
         gridCell.textContent = cellInput;
-        gridCell.insertAdjacentHTML('beforeend', '<input>'); // ADDED FOR TESTING
-        gridCell.querySelector('input').addEventListener('keyup', acceptInput); // ADDED FOR TESTING
+
+        console.log(gridCell);
+
+        // gridCell.removeChild(InputBoxInCell);
+        gridCell.addEventListener('click', createInputBox);
+
+        // gridCell.insertAdjacentHTML('beforeend', '<input>'); // ADDED FOR TESTING
+        // gridCell.querySelector('input').addEventListener('keyup', acceptInput); // ADDED FOR TESTING
         // gridCell.querySelector('input').style.display = 'none';
         checkIfSolved();
     } else {
@@ -38,28 +46,52 @@ const acceptInput = (event) => {
 }
 
 const createInputBox = (event) => {
+
+    // Delete any other input boxes in the grid
+    const rows = grid.querySelectorAll('tr');
+    // Iterate through all board rows
+    for (i = 0; i < 9; i++) {
+        const row = rows[i];
+        const cells = row.querySelectorAll('td');
+        // Iterate through each cell in each board row
+        for (j = 0; j < 9; j++) {
+            const gridCell = cells[j];
+            // If there's an input box in the cell, remove it
+            if (gridCell.querySelector('input') != null && gridCell != event.currentTarget) {
+                gridCell.removeChild(gridCell.querySelector('input'));
+            }
+        }
+    }
+
     if (event.currentTarget.querySelector('input') === null) {
 
         console.log(event.currentTarget);
 
-        // FIX THIS ------
         newInputBox = document.createElement('input');
         newInputBox.addEventListener('keyup', acceptInput);
-        newInputBox.textContent = event.currentTarget.textContent;
+        // newInputBox.textContent = event.currentTarget.textContent;
+        newInputBox.value = event.currentTarget.textContent;
 
-        console.log(newInputBox);
-        
+        event.currentTarget.textContent = "";
+
+        // console.log(newInputBox);
+
+        // event.currentTarget.appendChild(newInputBox);
+        // event.currentTarget.insertAdjacentHTML('beforeend', newInputBox);
         event.currentTarget.appendChild(newInputBox);
-        // event.currentTarget.insertAdjacentHTML('beforeend', '<input>');
-        // event.currentTarget.innerHTML = '<input>';
 
-        console.log(event.currentTarget);
+        // console.log(event.currentTarget.innerHTML);
 
-        // FIX THIS ------
-        // event.currentTarget.querySelector('input')
+        // const InputBoxInCell = event.currentTarget.querySelector('input');
 
-        event.currentTarget.textContent = '';
-        
+        // console.log(InputBoxInCell);
+
+        // InputBoxInCell.addEventListener('keyup', acceptInput);
+
+        // event.currentTarget.textContent = '';
+
+        // console.log(event.currentTarget);
+
     }
 }
 
@@ -81,7 +113,6 @@ const createNewGrid = () => {
     // ];
 }
 
-
 const resetGrid = () => {
     const grid = document.querySelector('.grid');
     grid.innerHTML = "";
@@ -98,12 +129,15 @@ const resetGrid = () => {
                 rowCell.setAttribute('blank', 'true');
                 // rowCell.addEventListener('click', selectCell);
                 // rowCell.addEventListener('click', createInputBox);
-                rowCell.insertAdjacentHTML('beforeend', '<input>'); // ADDED FOR TESTING
-                rowCell.querySelector('input').addEventListener('keyup', acceptInput);
-                rowCell.addEventListener('click', (event) => {
-                    console.log('clicked');
-                    rowCell.querySelector('input').style.display = 'initial';
-                })
+                // rowCell.insertAdjacentHTML('beforeend', '<input>'); // ADDED FOR TESTING
+                // rowCell.querySelector('input').addEventListener('keyup', acceptInput);
+
+                // rowCell.addEventListener('click', (event) => {
+                //     console.log('clicked');
+                //     rowCell.querySelector('input').style.display = 'initial';
+                // })
+                rowCell.addEventListener('click', createInputBox);
+
                 // rowCell.addEventListener('arrow keys', move);
             } else {
                 rowCell.setAttribute('blank', 'false');
@@ -210,9 +244,9 @@ const checkIfSolved = () => {
             const gridCell = cells[j];
             if (gridCell.getAttribute('blank') === 'true') {
                 if (validateInput(gridCell)) {
-                    gridCell.style.color = "blue";
+                  gridCell.style.color = "#00FFFF";
                 } else {
-                    gridCell.style.color = "red";
+                  gridCell.style.color = "#ff0100";
                     grid.setAttribute('solved', 'false');
                     // let boardSolved = false;
                     // console.log(boardSolved);
@@ -240,8 +274,8 @@ const restart = () => {
             const gridCell = cells[j];
             if (gridCell.getAttribute('blank') === 'true') {
                 gridCell.textContent = "";
-                gridCell.insertAdjacentHTML('beforeend', '<input>');
-                gridCell.querySelector('input').addEventListener('keyup', acceptInput);
+                // gridCell.insertAdjacentHTML('beforeend', '<input>');
+                // gridCell.querySelector('input').addEventListener('keyup', acceptInput);
             }
         }
     }
@@ -273,7 +307,7 @@ const solve = (grid) => {
                     console.log('Row: ' + (i + 1));
                     console.log('Column: ' + (j + 1));
                     console.log('Attempt: ' + attempt);
-                    
+
                     // gridCell.style.boxShadow = "0 0 10px 10px rgba(0, 0, 0, 0.2)";
 
                     const rows = grid.querySelectorAll('tr');
@@ -448,12 +482,11 @@ const autoSolveRepresentedGrid = () => {
     return true;
 }
 
-checkIfSolved();
+// checkIfSolved();
 
-autoSolveRepresentedGrid();
+// autoSolveRepresentedGrid();
 
 newGameBtn.addEventListener('click', resetGrid);
 restartBtn.addEventListener('click', restart);
 // hintBtn.addEventListener('click', hint);
 autoSolveBtn.addEventListener('click', autoSolve);
-

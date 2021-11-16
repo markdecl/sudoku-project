@@ -1,22 +1,37 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial;
+    font-family: 'Teko', sans-serif;
+    background-color: black;
+}
+
+img {
+  opacity: 0.5;
 }
 
 .title {
     width: 100%;
-    height: 80px;
+    height: 50px;
     text-align: center;
-    padding: 30px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.title:hover {
+  color:#FF00FF;
+}
+
 h1 {
-    font-size: 40px;
-    font-weight: 100;
+  font-weight: 100;
+  font-size: 35px;
+  color: white;
+  transition: 0.4s;
+}
+
+h1:hover {
+  color: #FF00FF;
 }
 
 .grid-container {
@@ -24,7 +39,7 @@ h1 {
     display: flex;
     justify-content: center;
     align-content: center;
-    padding: 30px;
+    padding: 20px;
 }
 
 table {
@@ -39,7 +54,7 @@ table {
     /* margin: 0 auto;
     margin-top: 50px;
     margin-left: 300px; */
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2); */
     /* justify-content: center;
     align-content: center; */
@@ -54,10 +69,10 @@ td {
     padding: 0;
     text-align: center;
     font-size: 25px;
-    color: rgba(0, 0, 0, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    width: 50px;
-    height: 50px;
+    color: white;
+    border: 0.5px solid white;
+    width: 35px;
+    height: 35px;
     transition: 0.4s;
     /* display: flex;
     align-items: center;
@@ -68,13 +83,13 @@ td {
 }
 
 td:hover {
-    background-color: lightyellow;
+    background-color: #FF00FF;
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 25px;
+    color: black;
     font-weight: bold;
-    border: 1px solid black;
+    border: 0.5px solid white;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
@@ -84,8 +99,8 @@ td:focus {
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 25px;
-    border: 1px solid black;
+    font-size: 20px;
+    border: 0.5px solid black;
     box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
   }
@@ -94,54 +109,54 @@ input {
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 25px;
+    font-family: 'Teko', sans-serif;
     color: rgba(0, 0, 0, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
-    width: 50px;
-    height: 50px;
+    width: 32px;
+    height: 32px;
     font-size: 25px;
     box-shadow: 5px;
-    background-color: transparent;
-    display: none;
+    background-color: white;
+    /* display: none; */
     /* position: relative; */
 }
 
 
-input:focus {
+/* input:focus {
     display: initial;
-}
+} */
 
 
 tr:nth-child(4) td {
-    border-top-width: 4px;
+    border-top-width: 2px;
 }
 tr:nth-child(7) td {
-    border-top-width: 4px;
+    border-top-width: 2px;
 }
 td:nth-child(3) {
-    border-right-width: 4px;
+    border-right-width: 2px;
 }
 td:nth-child(6) {
-    border-right-width: 4px;
+    border-right-width: 2px;
 }
 tr:nth-child(1) td {
-    border-top-width: 4px;
+    border-top-width: 2px;
 }
 td:nth-child(1) {
-    border-left-width: 4px;
+    border-left-width: 2px;
 }
 td:nth-child(9) {
-    border-right-width: 4px;
+    border-right-width: 2px;
 }
 tr:nth-child(9) td {
-    border-bottom-width: 4px;
+    border-bottom-width: 2px;
 }
 
 
 .buttons-container {
     width: 100%;
     height: 100px;
-    padding: 30px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -155,33 +170,57 @@ tr:nth-child(9) td {
 
 button {
     /* margin: 10px; */
-    height: 100px;
+    height: 50px;
     border: none;
+    background-color: black;
     color: white;
     padding: 15px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-family: 'Teko', sans-serif;
     font-size: 20px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
-    border-width: 4px;
+    border-style: solid;
+    border-width: 2px;
     border-radius: 15px;
     transition: 0.4s;
 }
 
 button:hover {
+    /* border: white; */
+    color: black;
     border: none;
-    color: white;
-    padding: 15px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+    /* padding: 15px 15px; */
+    /* text-align: center; */
+    /* text-decoration: none; */
+    /* display: inline-block; */
+    /* color: black; */
+    background-color: white;
+    /* box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2); */
     cursor: pointer;
     transition: 0.4s;
 }
 
 button:active {
+    /* height: 50px; */
+    border: white;
+    border-style: solid;
+    border-width: 2px;
+    color: white;
+    background-color: black;
+    /* padding: 15px 15px; */
+    /* text-align: center; */
+    /* text-decoration: none; */
+    /* display: inline-block; */
+    /* font-size: 16px; */
+    /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2); */
+    /* border-radius: 15px; */
+    transition: 0s;
+}
+
+/* button:active:after {
+    /* margin: 10px; */
     height: 50px;
     border: none;
     color: white;
@@ -189,42 +228,29 @@ button:active {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    transition: 0s;
-}
-
-button:active:after {
-    /* margin: 10px; */
-    height: 100px;
-    border: none;
-    color: white;
-    padding: 15px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
     font-size: 20px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
     border-width: 4px;
     border-radius: 15px;
     transition: 0.4s;
-}
+} */
 
-#new-game {
-    background-color: blue;
-    opacity: 0.8;
+#new-game:hover {
+    /* background-color: blue; */
+    /* opacity: 0.8; */
+    color: black;
+    background-color: #FF00FF;
 }
 
 #restart {
-    background-color: red;
+    /* background-color: red; */
 }
 
 #hint {
-    color: black;
-    background-color: yellow;
+    /* color: black; */
+    /* background-color: yellow; */
 }
 
 #auto-solve {
-    background-color: #4CAF50; /* Green */  
+    /* background-color: #4CAF50; Green */
 }

@@ -12,7 +12,7 @@ I was keen to practise my skills in HTML, CSS, and JS through completing an inde
 
 ## Tools and technologies used:
 * HTML5
-* CSS
+* CSS3
 * ES6
 
 ## Challenges:

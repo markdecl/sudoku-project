@@ -2,6 +2,8 @@
 
 I was keen to practise my skills in HTML, CSS, and JS through completing an independent project. So I built a Sudoku game that runs in-browser, complete with basic gameplay, a new game generator, and 'Hint' and 'AutoSolve' features powered by a backtracking algorithm.
 
+I was curious to see how I could implement a backtracking algorithm and a tree data structure.
+
 ## Demo:
 
 ### Basic gameplay on the interface

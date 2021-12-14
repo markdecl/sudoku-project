@@ -11,7 +11,7 @@ I wanted to challenge myself to implement all the features I wanted whilst being
 ### Basic gameplay on the interface
 ![Gameplay Demo](demo/gameplay.gif)
 
-### New game generator
+### _New game_ generator
 Coming soon...
 
 ### _Hint_ and _AutoSolve_ features

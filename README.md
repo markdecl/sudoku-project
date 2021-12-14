@@ -17,10 +17,15 @@ I wanted to challenge myself to implement all the features I wanted whilst being
 ## Tools and technologies used:
 * HTML5
 * CSS3
-* ES6
+* JavaScript ES6
 
 ## Challenges:
-
+* JavaScript's unexpected behaviour - for example, I ran into problems trying to iterate over the row and column indices when traversing the Sudoku grid, because the .getAttribute() function called on each grid cell was returning the indices as a string, despite the fact I had declared them as an integer previously in the script. I solved this problem by converting the index variables to integers using the parseInt() function:
+ ```
+  const squareRowIdx = (Math.floor(parseInt(columnIdx)/3.0) * 3);
+ ```
+* Implementing AutoSolve feature
+* 
 
 ## Credits:
 * https://www.101computing.net/sudoku-generator-algorithm/

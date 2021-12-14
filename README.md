@@ -1,10 +1,8 @@
 # Sudoku Solver
 
-I was keen to practise my skills in HTML, CSS, and JS through completing an independent project. So I built a Sudoku game that runs in-browser.
+I was keen to practise my skills in HTML, CSS, and JS through completing an independent project. So I built a Sudoku game that runs in-browser complete with basic gameplay, a new game generator, and 'Hint' and 'AutoSolve' features.
 
-, complete with basic gameplay, a new game generator, and 'Hint' and 'AutoSolve' features powered by a backtracking algorithm.
-
-I was curious to see how I could implement  , so I learnt about backtracking algorithms and tree data structures and implemented them in the JS script.
+I was curious to see how I could implement the 'AutoSolve' feature using a recursive algorithm, so I learnt about backtracking algorithms and tree data structures and implemented them in the JS script.
 
 I wanted to challenge myself to implement all the features I wanted whilst being as economical as possible with the code, which really stretched my knowledge of CSS and JS.
 

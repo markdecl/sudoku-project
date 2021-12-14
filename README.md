@@ -12,8 +12,10 @@ I wanted to challenge myself to implement all the features I wanted whilst being
 ![Gameplay Demo](demo/gameplay.gif)
 
 ### New game generator
+Coming soon...
 
 ### _Hint_ and _AutoSolve_ features
+Coming soon...
 
 ## Tools and technologies used:
 * HTML5

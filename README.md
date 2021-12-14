@@ -9,6 +9,7 @@ I wanted to challenge myself to implement all the features I wanted whilst being
 ## Demo:
 
 ### Basic gameplay on the interface
+![Gameplay Demo](demo/gameplay.gif)
 
 ### New game generator
 

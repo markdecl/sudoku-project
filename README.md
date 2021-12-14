@@ -28,7 +28,6 @@ Coming soon...
   const squareRowIdx = (Math.floor(parseInt(columnIdx)/3.0) * 3);
  ```
 * Implementing AutoSolve feature
-* 
 
 ## Credits:
 * https://www.101computing.net/sudoku-generator-algorithm/

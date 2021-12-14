@@ -25,6 +25,13 @@ I wanted to challenge myself to implement all the features I wanted whilst being
 
 
 ## Credits:
+* https://www.101computing.net/sudoku-generator-algorithm/
+* https://medium.com/codex/building-a-sudoku-solver-and-generator-in-python-2-3-5eef3141702c
+* https://en.wikipedia.org/wiki/Sudoku_solving_algorithms
+* https://medium.com/nerd-for-tech/solve-sudoku-using-depth-first-search-algorithm-dfs-in-python-2be3caa08ccd
+* https://favtutor.com/blogs/depth-first-search-python
+* [ Sudoku Solver - Computerphile](https://www.youtube.com/watch?v=G_UYXzGuqvM&ab_channel=Computerphile)
+
 
 ## TODO:
 * Stop buttons from moving when one is hovered over

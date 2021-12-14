@@ -1,4 +1,4 @@
-# sudoku-project
+# Sudoku Solver
 
 I was keen to practise my skills in HTML, CSS, and JS through completing an independent project. So I built a Sudoku game that runs in-browser.
 

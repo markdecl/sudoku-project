@@ -45,3 +45,4 @@ Coming soon...
 * Deselect cell when there's a click event outside the grid
   * Add an event listener to body and link to function that deselects all grid cells
 * Implement auto-solver and auto-generator features
+* 9

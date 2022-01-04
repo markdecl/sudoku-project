@@ -150,9 +150,8 @@ const validateInput = (gridCell) => {
 }
 
 const checkIfSolved = () => {
-    grid.setAttribute('solved', 'true');
-
     // iterate through every cell in the grid and check whether input value is valid
+    grid.setAttribute('solved', 'true');
     // validate cell input by colour
     const rows = grid.querySelectorAll('tr');
     // iterate through all board rows
@@ -269,131 +268,6 @@ const solve = (grid) => {
 
 const autoSolve = () => {
     solve(grid);
-}
-
-// autoSolve with abstracted grid object:
-// represent grid in 2-D array
-const representGrid = () => {
-    const twoDArray =[];
-    const rows = grid.querySelectorAll('tr');
-    // iterate through all board rows
-    for (i = 0; i < 9; i++) {
-        const row = rows[i];
-        const cells = row.querySelectorAll('td');
-        // iterate through each cell in each board row
-        cells_array = [];
-        for (j = 0; j < 9; j++) {
-            const gridCell = cells[j];
-            cells_array.push(gridCell.textContent);
-        }
-        twoDArray.push(cells_array);
-    }
-    return twoDArray;
-}
-
-const rGrid = representGrid();
-
-const autoSolveRepresentedGrid = () => {
-    console.log('RUNNING AUTO_SOLVE...');
-    console.log(rGrid);
-    // iterate through all board rows
-    for (i = 0; i < 9; i++) {
-        // iterate through each cell in each board row
-        for (j = 0; j < 9; j++) {
-            let gridCell = rGrid[i][j];
-            if (gridCell === "") {
-                for (attempt = 1; attempt <= 9; attempt++) {
-                    // sleepSync(1000);
-                    console.log('Row: ' + (i + 1));
-                    console.log('Column: ' + (j + 1));
-                    console.log('Attempt: ' + attempt);
-
-                    gridCell = `${attempt}`;
-                    // gridCell.textContent = 'wys';
-
-                    console.log(gridCell);
-                    // console.log(validateInput(gridCell));
-
-                    const rowIdx = i;
-                    const columnIdx = j;
-
-                    // const gridCell = cells[j];
-
-                    // find all other numbers in cell row
-                    cellRow = rGrid[i].splice(j, 1);
-                    // console.log('cellRow:');
-                    // console.log(cellRow);
-
-                    // find all other numbers in cell column
-                    const cellCol = [];
-                    for (l = 0; l < 9; l++) {
-                        cellCol.push(tds[l][j]);
-                    }
-                    cellCol.splice(i, 1);
-                    // console.log('cellCol:');
-                    // console.log(cellCol);
-
-                    // find all other numbers in cell square
-                    // FIX THIS -------- THINK IT'S FIXED
-                    const cellSquare = [];
-                    const squareRowIdx = (Math.floor((parseInt(i))/3.0) * 3);
-                    // console.log('square row idx');
-                    // console.log(squareRowIdx);
-                    // console.log('column idx');
-                    // console.log(columnIdx);
-                    const squareColumnIdx = (Math.floor(parseInt(j)/3.0) * 3);
-                    // console.log('square column idx');
-                    // console.log(squareColumnIdx);
-                    for (m = squareRowIdx; m < squareRowIdx + 3; m++) {
-                        // console.log('m');
-                        // console.log(m);
-                        for (n = squareColumnIdx; n < squareColumnIdx + 3; n++) {
-                            // console.log('n');
-                            // console.log(n);
-                            // if (rowIdx != m && columnIdx != n) {
-                            // console.log(td_rows[n].textContent);
-                            console.log(rGrid[m][n]);
-                            cellSquare.push(rGrid[m][n]);
-                            // }
-                        }
-                    }
-                    squareIdx = ((rowIdx % 3) * 3) + (columnIdx % 3);
-                    // console.log(squareIdx);
-                    cellSquare.splice(squareIdx, 1);
-                    // console.log('cellSquare:');
-                    // console.log(cellSquare);
-
-
-                    // if the cell's number isn't duplicated in its row, column or square, color it blue
-                    // console.log('input:');
-                    console.log(attempt);
-                    console.log(cellRow);
-                    console.log(cellCol);
-                    console.log(cellSquare);
-                    // if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false) {
-                    if (cellRow.includes(attempt) === false && cellCol.includes(attempt) === false && cellSquare.includes(attempt) === false) {
-                        console.log('Returning true...');
-                        console.log('NEXT RECURSION LEVEL:');
-
-                        gridCell.textContent = `${attempt}`;
-                        console.log(gridCell);
-                        // console.log(gridCell)
-                        // checkIfSolved();
-                        console.log(grid);
-                        if (solve(grid)) {
-                            return true;
-                        } else {
-                            // if this solution is invalid, backtrack
-                            let gridCell = "";
-                        }
-                    }
-                }
-                return false;
-            }
-        }
-    }
-    // checkIfSolved();
-    return true;
 }
 
 // checkIfSolved();

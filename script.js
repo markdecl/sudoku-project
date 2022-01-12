@@ -117,7 +117,6 @@ const validateInput = (gridCell) => {
     cellCol.splice(rowIdx, 1);
 
     // find all other numbers in cell square
-    // FIX THIS -------- THINK IT'S FIXED
     const cellSquare = [];
     const squareRowIdx = (Math.floor((parseInt(rowIdx))/3.0) * 3);
     const squareColumnIdx = (Math.floor(parseInt(columnIdx)/3.0) * 3);
@@ -133,13 +132,11 @@ const validateInput = (gridCell) => {
 
     // if the cell's number isn't duplicated in its row, column or square, color it blue
 
-    // DELETE ONCE FEATURE IS COMPLETE:
     console.log(input);
     console.log(cellRow);
     console.log(cellCol);
     console.log(cellSquare);
 
-    // if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false) {
     if (cellRow.includes(`${input}`) === false && cellCol.includes(`${input}`) === false && cellSquare.includes(`${input}`) === false) {
         console.log('Returning true...');
         return true;
@@ -269,10 +266,6 @@ const solve = (grid) => {
 const autoSolve = () => {
     solve(grid);
 }
-
-// checkIfSolved();
-
-// autoSolveRepresentedGrid();
 
 newGameBtn.addEventListener('click', resetGrid);
 restartBtn.addEventListener('click', restart);

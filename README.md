@@ -27,7 +27,7 @@ Coming soon...
  ```
   const squareRowIdx = (Math.floor(parseInt(columnIdx)/3.0) * 3);
  ```
-* Implementing AutoSolve feature - it was difficult passing arguments to recursive function calls
+* Implementing AutoSolve feature - it was difficult to pass arguments to recursive function calls
 
 ## Credits:
 * https://www.101computing.net/sudoku-generator-algorithm/

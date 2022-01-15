@@ -38,7 +38,7 @@ Coming soon...
 * [ Sudoku Solver - Computerphile](https://www.youtube.com/watch?v=G_UYXzGuqvM&ab_channel=Computerphile)
 
 
-## TODO:
+## TO-DO:
 * Stop buttons from moving when one is hovered over
 * Increase buttons' size and buttons' font size
 * Move input box text content to grid cell text content when the grid cell is deselected

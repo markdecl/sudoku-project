@@ -1,6 +1,6 @@
 # Sudoku Solver
 
-I was keen to practise my skills in HTML, CSS, and JS through completing an independent project. So I designed and developed a Sudoku game that runs in-browser complete with basic gameplay, a new game generator, and 'Hint' and 'AutoSolve' features. In accordance with the rules of Sudoku, the game validates the user input in each cell by checking whether the same number is present in the cell's row, column or square. The inputted number then goes blue if it is valid or red if it is invalid.
+I was keen to practise my skills in HTML, CSS, and JS by completing an independent project alongside my coding bootcamp. So I designed and developed a Sudoku game that runs in-browser complete with basic gameplay, a new game generator, and 'Hint' and 'AutoSolve' features. In accordance with the rules of Sudoku, the game validates the user input in each cell by checking whether the same number is present in the cell's row, column or square. The inputted number then goes blue if it is valid or red if it is invalid.
 
 I was curious to see how I could implement the 'AutoSolve' feature using a recursive algorithm, so I learnt about backtracking algorithms and tree data structures and implemented them in the JS script.
 
